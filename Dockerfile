@@ -19,5 +19,6 @@ VOLUME ["/project"]
 WORKDIR "/project"
 
 ENV versions "5.2-"
+ENV report ""
 
-CMD phpcs --standard=PHPCompatibility --runtime-set testVersion $versions .
+CMD phpcs --standard=PHPCompatibility --runtime-set testVersion $versions $report .
