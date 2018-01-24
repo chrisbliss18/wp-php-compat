@@ -1,4 +1,4 @@
-FROM php
+FROM php:7.2-cli
 MAINTAINER Chris Jean <chris@chrisjean.com>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
@@ -12,11 +12,12 @@ RUN echo "phar.readonly = 0" >> /usr/local/etc/php/php.ini
 
 RUN pear install PHP_CodeSniffer
 RUN git clone https://github.com/wimg/PHPCompatibility.git /usr/local/lib/php/PHP/CodeSniffer/Standards/PHPCompatibility
+RUN phpcs --config-set installed_paths /usr/local/lib/php/PHP/CodeSniffer/Standards/PHPCompatibility
 
 RUN mkdir /project
 VOLUME ["/project"]
 WORKDIR "/project"
 
-ENV versions "5.2-7.1"
+ENV versions "5.2-"
 
 CMD phpcs --standard=PHPCompatibility --runtime-set testVersion $versions .
