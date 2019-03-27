@@ -1,4 +1,4 @@
-FROM php:7.2-cli
+FROM php:7.3-cli
 MAINTAINER Chris Jean <chris@chrisjean.com>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
